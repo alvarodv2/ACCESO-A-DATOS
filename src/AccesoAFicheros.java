@@ -21,6 +21,7 @@ public class AccesoAFicheros {
 
     public static void buscarEnDirectorios(String rutaDirectorio, String textoBuscado) {
         File directorio = new File(rutaDirectorio);
+        // Expresion lambda
         File[] archivos = directorio.listFiles((d, nombre) -> nombre.endsWith(".txt"));
 
         if (archivos != null) {

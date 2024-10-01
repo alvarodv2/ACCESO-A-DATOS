@@ -106,6 +106,7 @@ public class EncodingDeFicheros {
                 encoding.equalsIgnoreCase("ISO-8859-1");
     }
 
+    // Al hacer uso de "throws IOException" en el metodo, hacemos que se propague la excepcion hacia arriba, para ser controlada en el main
     private static void readUTF8AndWriteUTF16AndISO88591(String rutaEntrada, String encodingEntrada, String rutaSalida, String encodingSalida) throws IOException {
         // Establecemos los charset de entrada y salida
         Charset charsetEntrada = Charset.forName(encodingEntrada);
