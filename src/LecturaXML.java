@@ -44,12 +44,12 @@ public class LecturaXML {
 
         // Si el nodo tiene atributos, mostrarlos
         if (nodo.hasAttributes()) {
-            NamedNodeMap attributes = nodo.getAttributes();
+            NamedNodeMap atributos = nodo.getAttributes();
             ps.print(" - Atributos: {");
-            for (int i = 0; i < attributes.getLength(); i++) {
-                Node attr = attributes.item(i);
+            for (int i = 0; i < atributos.getLength(); i++) {
+                Node attr = atributos.item(i);
                 ps.print(attr.getNodeName() + " = " + attr.getNodeValue());
-                if (i < attributes.getLength() - 1) {
+                if (i < atributos.getLength() - 1) {
                     ps.print(", ");
                 }
             }
