@@ -16,7 +16,7 @@ public class JDBC {
             System.out.println("Datos del registro 1 (Map): " + selectRowMap(1));
 
             // Actualizamos un unico campo
-            update("74744467X", "telefono", "987654321"); // Usa el DNI como identificador
+            update("74744467X", "telefono", "987654321");
 
             // Actualizamos varios campos con Map
             Map<String, String> updateFields = new HashMap<>();

@@ -98,7 +98,7 @@ public class FicherosAccesoAleatorio {
         camposLength.add(5);
 
         try {
-            FicherosAccesoAleatorio faa = new FicherosAccesoAleatorio("file_binario_2.dat", campos, camposLength);
+            FicherosAccesoAleatorioAvanzado faa = new FicherosAccesoAleatorioAvanzado("file_binario_2.dat", campos, camposLength);
 
             while (true) {
                 System.out.println("Seleccione una opción:");
