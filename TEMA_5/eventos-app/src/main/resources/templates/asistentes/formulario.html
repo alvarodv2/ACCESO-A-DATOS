@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FORMULARIO DE ASISTENTE</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>NUEVO ASISTENTE</h1>
+<form th:action="@{/asistentes}" th:object="${asistente}" method="post">
+    <label for="usuario">Usuario:</label>
+    <select id="usuario" th:field="*{usuario}">
+        <option th:each="usuario : ${usuarios}"
+                th:value="${usuario.id}"
+                th:text="${usuario.nombre + ' ' + usuario.apellidos}"></option>
+    </select>
+    <br>
+    <label for="evento">Evento:</label>
+    <select id="evento" th:field="*{evento}">
+        <option th:each="evento : ${eventos}"
+                th:value="${evento.id}"
+                th:text="${evento.titulo}"></option>
+    </select>
+    <br>
+    <label for="confirmado">Confirmado:</label>
+    <input type="checkbox" id="confirmado" th:field="*{confirmado}">
+    <br>
+    <button type="submit">Guardar</button>
+</form>
+</body>
+</html>

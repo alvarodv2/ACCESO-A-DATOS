@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LISTA DE ASISTENTES</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>ASISTENTES</h1>
+<a th:href="@{/asistentes/nuevo}" class="nuevo-asistente-btn">Nuevo Asistente</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Evento</th>
+        <th>Confirmado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="asistente : ${asistentes}">
+        <td th:text="${asistente.id}"></td>
+        <td th:text="${asistente.usuario.nombre + ' ' + asistente.usuario.apellidos}"></td>
+        <td th:text="${asistente.evento.titulo}"></td>
+        <td th:text="${asistente.confirmado ? 'Sí' : 'No'}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
