@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Paper, Box, Typography, Button } from '@mui/material';
+import { Paper, Typography, Button } from '@mui/material';
+import Grid2 from '@mui/material/Grid2'; 
 import Casilla from './Casilla';
 
 const Tablero: React.FC = () => {
@@ -28,7 +29,7 @@ const Tablero: React.FC = () => {
     const nuevoTablero = [...casillas];
     nuevoTablero[index] = jugadorActual;
     setCasillas(nuevoTablero);
-    setJugadorActual(jugadorActual === 'X' ? 'O' : 'X');(jugadorActual === 'X' ? 'O' : 'X');
+    setJugadorActual(jugadorActual === 'X' ? 'O' : 'X'); // Corregido
   };
 
   useEffect(() => {
@@ -44,8 +45,6 @@ const Tablero: React.FC = () => {
     setGanador(null);
   };
 
-  //console.log("RENDER");
-
   return (
     <Paper 
       elevation={3} 
@@ -56,58 +55,61 @@ const Tablero: React.FC = () => {
         margin: '0 auto'
       }}
     >
-      <Box sx={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        gap: 2,
-        width: '100%'
-      }}>
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: 1
-        }}>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              fontSize: { xs: '1rem', sm: '1.25rem' }
-            }}
-          >
-            {ganador 
-              ? `🏆 ¡Jugador ${ganador} gana!` 
-              : `Siguiente: Jugador ${jugadorActual}`
-            }
-          </Typography>
-          <Button 
-            variant="contained" 
-            color="success"
-            onClick={reiniciarJuego}
-            size="small"
-          >
-            Nuevo Juego
-          </Button>
-        </Box>
+      <Grid2 container direction="column" spacing={2} sx={{ width: '100%' }}>
+        <Grid2 
+          container 
+          justifyContent="space-between" 
+          alignItems="center" 
+          flexWrap="wrap" 
+          spacing={1}
+        >
+          <Grid2 item>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                fontSize: { xs: '1rem', sm: '1.25rem' }
+              }}
+            >
+              {ganador 
+                ? `🏆 ¡Jugador ${ganador} gana!` 
+                : `Siguiente: Jugador ${jugadorActual}`
+              }
+            </Typography>
+          </Grid2>
+          <Grid2 item>
+            <Button 
+              variant="contained" 
+              color="success"
+              onClick={reiniciarJuego}
+              size="small"
+            >
+              Nuevo Juego
+            </Button>
+          </Grid2>
+        </Grid2>
         
-        <Box sx={{ 
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 1,
-          width: '100%',
-          justifyItems: 'center'
-        }}>
+        <Grid2 
+          container 
+          spacing={1} 
+          sx={{ 
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 1,
+            width: '100%',
+            justifyItems: 'center'
+          }}
+        >
           {casillas.map((valor, index) => (
-            <Box key={index}>
+            <Grid2 item key={index}>
               <Casilla
                 valor={valor}
                 onCasillaClick={() => handleClick(index)}
                 disabled={!!ganador}
               />
-            </Box>
+            </Grid2>
           ))}
-        </Box>
-      </Box>
+        </Grid2>
+      </Grid2>
     </Paper>
   );
 };
