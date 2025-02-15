@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Paper, Typography, Button } from '@mui/material';
-import Grid2 from '@mui/material/Grid2'; 
+import Grid from '@mui/material/Grid';
 import Casilla from './Casilla';
 
 const Tablero: React.FC = () => {
@@ -55,15 +55,9 @@ const Tablero: React.FC = () => {
         margin: '0 auto'
       }}
     >
-      <Grid2 container direction="column" spacing={2} sx={{ width: '100%' }}>
-        <Grid2 
-          container 
-          justifyContent="space-between" 
-          alignItems="center" 
-          flexWrap="wrap" 
-          spacing={1}
-        >
-          <Grid2 item>
+      <Grid container direction="column" spacing={2} sx={{ width: '100%' }}>
+        <Grid container justifyContent="space-between" alignItems="center" flexWrap="wrap" spacing={1}>
+          <Grid item>
             <Typography 
               variant="h6" 
               sx={{ 
@@ -75,8 +69,8 @@ const Tablero: React.FC = () => {
                 : `Siguiente: Jugador ${jugadorActual}`
               }
             </Typography>
-          </Grid2>
-          <Grid2 item>
+          </Grid>
+          <Grid item>
             <Button 
               variant="contained" 
               color="success"
@@ -85,10 +79,10 @@ const Tablero: React.FC = () => {
             >
               Nuevo Juego
             </Button>
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
         
-        <Grid2 
+        <Grid 
           container 
           spacing={1} 
           sx={{ 
@@ -100,16 +94,16 @@ const Tablero: React.FC = () => {
           }}
         >
           {casillas.map((valor, index) => (
-            <Grid2 item key={index}>
+            <Grid item key={index}>
               <Casilla
                 valor={valor}
                 onCasillaClick={() => handleClick(index)}
                 disabled={!!ganador}
               />
-            </Grid2>
+            </Grid>
           ))}
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </Paper>
   );
 };
