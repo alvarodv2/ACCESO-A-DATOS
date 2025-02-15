@@ -1,49 +1,10 @@
-import { useState, useEffect, useCallback } from 'react';
 import { Paper, Typography, Button } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Casilla from './Casilla';
+import { useGame } from '../context/useContext';
 
 const Tablero: React.FC = () => {
-  const [casillas, setCasillas] = useState<(string | null)[]>(Array(9).fill(null));
-  const [jugadorActual, setJugadorActual] = useState<'X' | 'O'>('X');
-  const [ganador, setGanador] = useState<string | null>(null);
-
-  const combinacionesGanadoras = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    [0, 4, 8], [2, 4, 6]
-  ];
-
-  const verificarGanador = useCallback((tablero: (string | null)[]) => {
-    for (const [a, b, c] of combinacionesGanadoras) {
-      if (tablero[a] && tablero[a] === tablero[b] && tablero[a] === tablero[c]) {
-        return tablero[a];
-      }
-    }
-    return null;
-  }, []);
-
-  const handleClick = (index: number) => {
-    if (casillas[index] || ganador) return;
-
-    const nuevoTablero = [...casillas];
-    nuevoTablero[index] = jugadorActual;
-    setCasillas(nuevoTablero);
-    setJugadorActual(jugadorActual === 'X' ? 'O' : 'X'); // Corregido
-  };
-
-  useEffect(() => {
-    const posibleGanador = verificarGanador(casillas);
-    if (posibleGanador) {
-      setGanador(posibleGanador);
-    }
-  }, [casillas, verificarGanador]);
-
-  const reiniciarJuego = () => {
-    setCasillas(Array(9).fill(null));
-    setJugadorActual('X');
-    setGanador(null);
-  };
+  const { casillas, jugadorActual, ganador, handleClick, reiniciarJuego } = useGame();
 
   return (
     <Paper 
@@ -55,9 +16,9 @@ const Tablero: React.FC = () => {
         margin: '0 auto'
       }}
     >
-      <Grid container direction="column" spacing={2} sx={{ width: '100%' }}>
-        <Grid container justifyContent="space-between" alignItems="center" flexWrap="wrap" spacing={1}>
-          <Grid item>
+      <Grid2 container direction="column" spacing={2} sx={{ width: '100%' }}>
+        <Grid2 container justifyContent="space-between" alignItems="center" flexWrap="wrap" spacing={1}>
+          <Grid2>
             <Typography 
               variant="h6" 
               sx={{ 
@@ -69,8 +30,8 @@ const Tablero: React.FC = () => {
                 : `Siguiente: Jugador ${jugadorActual}`
               }
             </Typography>
-          </Grid>
-          <Grid item>
+          </Grid2>
+          <Grid2>
             <Button 
               variant="contained" 
               color="success"
@@ -79,10 +40,10 @@ const Tablero: React.FC = () => {
             >
               Nuevo Juego
             </Button>
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
         
-        <Grid 
+        <Grid2 
           container 
           spacing={1} 
           sx={{ 
@@ -94,16 +55,16 @@ const Tablero: React.FC = () => {
           }}
         >
           {casillas.map((valor, index) => (
-            <Grid item key={index}>
+            <Grid2 key={index}>
               <Casilla
                 valor={valor}
                 onCasillaClick={() => handleClick(index)}
                 disabled={!!ganador}
               />
-            </Grid>
+            </Grid2>
           ))}
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
     </Paper>
   );
 };

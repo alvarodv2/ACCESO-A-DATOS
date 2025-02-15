@@ -1,18 +1,18 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-// Tipos para TypeScript
+// TIPOS PARA TS
 interface GameContextType {
-  casillas: (string | null) [];
+  casillas: (string | null)[];
   jugadorActual: "X" | "O";
   ganador: string | null;
   handleClick: (index: number) => void;
   reiniciarJuego: () => void;
 }
 
-// Creamos el contexto
+// CREAMOS CONTEXTO
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
-// Hook para usar el contexto
+// HOOK PARA EL CONTEXTO
 export const useGame = () => {
   const context = useContext(GameContext);
   if (!context) {
@@ -21,7 +21,7 @@ export const useGame = () => {
   return context;
 };
 
-// Provider
+// PROVIDER ------>
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [casillas, setCasillas] = useState<(string | null)[]>(Array(9).fill(null));
   const [jugadorActual, setJugadorActual] = useState<"X" | "O">("X");
