@@ -1,0 +1,13 @@
+.app {
+  min-height: 100vh;
+}
+
+main {
+  padding: 20px;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}

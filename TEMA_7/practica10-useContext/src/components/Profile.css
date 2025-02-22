@@ -1,0 +1,25 @@
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.profile-data {
+    margin-top: 2rem;
+}
+
+.data-item {
+    margin-bottom: 1.5rem;
+}
+
+.data-item h3 {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.data-item p {
+    font-size: 1.1rem;
+    color: #333;
+}
